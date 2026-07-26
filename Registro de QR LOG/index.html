@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistema de Registro de Asistencia</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Librerías externas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+
+  <!-- Verificación de sesión -->
+  <script>
+    const tipo = localStorage.getItem('usuarioTipo');
+    if (!tipo) {
+      window.location.href = 'login.html';
+    }
+  </script>
+
+  <div class="container">
+    <h1>Sistema de Registro de Asistencia</h1>
+
+    <!-- Botón logout -->
+    <div style="text-align: right;">
+      <button onclick="logout()" class="danger">Cerrar Sesión</button>
+    </div>
+
+    <!-- Botones principales -->
+    <div class="action-buttons">
+      <button id="btn-scan-qr">Escanear Código QR</button>
+      <button id="btn-manual-entry" class="secondary">Agregar Registro Manual</button>
+      <button id="btn-export-excel" class="success">Descargar Excel</button>
+      <button id="btn-clear-all" class="danger">Borrar Todos los Registros</button>
+    </div>
+
+    <!-- Input carpeta de fotos -->
+    <div class="form-group">
+      <label for="photo-folder">Cargar carpeta de fotos</label>
+      <input type="file" id="photo-folder" webkitdirectory multiple />
+    </div>
+
+    <!-- Lector QR -->
+    <div id="qr-reader"></div>
+
+    <!-- Formulario manual -->
+    <div id="manual-form">
+      <h2>Agregar Registro Manual</h2>
+      <div class="form-group">
+        <label for="m-matricula">Matrícula <span class="required">*</span></label>
+        <input type="number" id="m-matricula" placeholder="Ingrese matrícula" required>
+        <div id="m-matricula-alert" class="alert">Matrícula inválida</div>
+      </div>
+      <div class="form-group">
+        <label for="m-nombre">Nombre completo <span class="required">*</span></label>
+        <input type="text" id="m-nombre" placeholder="Ingrese nombre" required>
+        <div id="m-nombre-alert" class="alert">Nombre obligatorio</div>
+      </div>
+      <div class="form-group">
+        <label for="m-carrera">Carrera <span class="required">*</span></label>
+        <input type="text" id="m-carrera" placeholder="Ingrese carrera" required>
+        <div id="m-carrera-alert" class="alert">Carrera obligatoria</div>
+      </div>
+      <div class="form-group">
+        <label for="m-evento">Nombre de la Clase <span class="required">*</span></label>
+        <input type="text" id="m-evento" placeholder="Ingrese clase" required>
+        <div id="m-evento-alert" class="alert">Clase obligatoria</div>
+      </div>
+      <div class="action-buttons">
+        <button id="btn-submit-manual" class="success">Guardar Registro</button>
+        <button id="btn-cancel-manual" class="danger">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Registros de Asistencia <span id="registros-count" class="badge badge-count">0</span></h2>
+    <div class="table-container">
+      <table id="registros-table">
+        <thead>
+          <tr>
+            <th>Matrícula</th>
+            <th>Nombre</th>
+            <th>Carrera</th>
+            <th>Clase</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Foto</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="registros-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modales y notificación -->
+  <div id="delete-modal" class="modal">…</div>
+  <div id="clear-all-modal" class="modal">…</div>
+  <div id="notification" class="notification"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    function logout() {
+      localStorage.removeItem('usuarioTipo');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

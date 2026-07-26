@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-box">
+    <img id="login-avatar" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar">
+    <h2>Iniciar Sesión</h2>
+
+    <div class="form-group">
+      <label for="correo">Correo institucional</label>
+      <input type="email" id="correo" placeholder="usuario@uach.mx" required />
+    </div>
+    <div class="form-group">
+      <label for="clave">Contraseña</label>
+      <input type="password" id="clave" placeholder="Contraseña" required />
+    </div>
+
+    <button id="btn-login">Entrar</button>
+    <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+    <div id="login-error" class="login-error">Correo o contraseña incorrectos</div>
+  </div>
+
+  <script>
+    // Mostrar imagen guardada si existe
+    const avatar = document.getElementById('login-avatar');
+    const avatarGuardado = localStorage.getItem('fotoPerfil');
+    if (avatarGuardado) {
+      avatar.src = avatarGuardado;
+    }
+  </script>
+
+  <script src="login.js"></script>
+</body>
+</html>

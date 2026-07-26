@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel del Alumno</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .charts-container {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+    section {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: none;
+    }
+    .activo {
+      display: block !important;
+    }
+    .charts-activo {
+      display: grid !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Bienvenido Juan Pérez</h2>
+    <div class="action-buttons">
+      <button class="primary" data-target="graficas">Estadísticas</button>
+      <button class="purple" data-target="form-justificacion">Justificaciones</button>
+      <button class="success" data-target="panel-perfil">Mi Perfil</button>
+      <button class="danger" data-target="panel-contacto">Contacto</button>
+      <button class="danger logout">Cerrar sesión</button>
+    </div>
+
+    <!-- GRÁFICAS -->
+    <div class="charts-container" id="graficas">
+      <canvas id="graficoMaterias"></canvas>
+      <canvas id="graficoCalificaciones"></canvas>
+      <canvas id="graficoAsistencias"></canvas>
+      <canvas id="graficoTareas"></canvas>
+    </div>
+
+    <!-- JUSTIFICACIÓN -->
+    <section id="form-justificacion">
+      <h3>Justificar Inasistencia</h3>
+      <label for="motivo">Motivo:</label>
+      <textarea id="motivo" rows="4" required></textarea><br>
+      <label for="archivo">Adjuntar comprobante:</label>
+      <input type="file" id="archivo" required><br>
+      <button id="submit-justificacion">Enviar Justificación</button>
+    </section>
+
+    <!-- PERFIL -->
+    <section id="panel-perfil">
+      <h3>Mi Perfil</h3>
+      <div style="text-align: center;">
+        <img id="foto-perfil-preview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Foto de perfil" style="width:100px; border-radius: 50%; margin-bottom:10px;">
+        <input type="file" id="input-foto-perfil" accept="image/*">
+      </div>
+      <p><strong>Nombre:</strong> Juan Pérez</p>
+      <p><strong>Matrícula:</strong> A305880</p>
+      <p><strong>Correo:</strong> a305880@uach.mx</p>
+      <p><strong>Programa:</strong> Ingeniería en Sistemas</p>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="panel-contacto">
+      <h3>Contacto con Docentes</h3>
+      <ul>
+        <li><strong>Matemáticas:</strong> <a href="mailto:mate@uach.mx">mate@uach.mx</a></li>
+        <li><strong>Física:</strong> <a href="mailto:fisica@uach.mx">fisica@uach.mx</a></li>
+        <li><strong>Historia:</strong> <a href="mailto:historia@uach.mx">historia@uach.mx</a></li>
+        <li><strong>Biología:</strong> <a href="mailto:biologia@uach.mx">biologia@uach.mx</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="gestion.js"></script>
+  <script>
+    const botones = document.querySelectorAll('.action-buttons button[data-target]');
+    botones.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Ocultar todas las secciones
+        document.querySelectorAll('section').forEach(sec => sec.classList.remove('activo'));
+        document.querySelector('.charts-container')?.classList.remove('charts-activo');
+
+        // Mostrar el destino
+        const targetId = btn.getAttribute('data-target');
+        if (targetId === 'graficas') {
+          document.getElementById(targetId)?.classList.add('charts-activo');
+        } else {
+          document.getElementById(targetId)?.classList.add('activo');
+        }
+      });
+    });
+
+    // Botón cerrar sesión
+    document.querySelector('.logout')?.addEventListener('click', () => {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

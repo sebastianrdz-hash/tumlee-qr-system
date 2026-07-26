@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generador de Registro con QR y Foto</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Biblioteca para generación de QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Biblioteca para lectura de Excel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Sistema de Registro con QR y Foto</h1>
+
+    <!-- Campos individuales -->
+    <div class="form-group">
+      <label for="matricula">Matrícula <span class="required">*</span></label>
+      <input type="number" id="matricula" placeholder="Ingrese número de matrícula" required />
+      <div id="matricula-alert" class="alert">Por favor ingrese una matrícula válida</div>
+    </div>
+    <div class="form-group">
+      <label for="nombre">Nombre completo <span class="required">*</span></label>
+      <input type="text" id="nombre" placeholder="Ingrese nombre completo" required />
+      <div id="nombre-alert" class="alert">Por favor ingrese el nombre</div>
+    </div>
+    <div class="form-group">
+      <label for="carrera">Carrera <span class="required">*</span></label>
+      <input type="text" id="carrera" placeholder="Ingrese su carrera" required />
+      <div id="carrera-alert" class="alert">Por favor ingrese la carrera</div>
+    </div>
+    <div class="form-group">
+      <label for="evento">Nombre de la Clase <span class="required">*</span></label>
+      <input type="text" id="evento" placeholder="Ingrese nombre de la clase" required />
+      <div id="evento-alert" class="alert">Por favor ingrese el nombre de la clase</div>
+    </div>
+    <div class="form-group">
+      <label for="photo-input">Subir foto del alumno</label>
+      <input type="file" id="photo-input" accept="image/*" />
+      <div id="photo-alert" class="alert">Por favor proporcione o capture una foto</div>
+    </div>
+    <div class="form-group">
+      <button id="start-camera" type="button">Iniciar Cámara</button>
+      <video id="video" width="200" height="150" autoplay style="display:none;"></video>
+      <button id="capture-photo" type="button" style="display:none;">Capturar Foto</button>
+      <img id="photo-preview" alt="Foto Previa" style="display:none; width:200px; margin-top:10px;" />
+    </div>
+
+    <!-- Botón individual -->
+    <button id="generar">Generar Código QR + Foto</button>
+
+    <!-- ↓ BLOQUE CARGA MASIVA ↓ -->
+    <div class="form-group">
+      <label for="file-input">Carga masiva (Excel)</label>
+      <input type="file" id="file-input" accept=".xlsx,.xls" />
+    </div>
+    <button id="procesar-excel">Procesar Excel y generar QRs</button>
+
+    <!-- Contenedor de resultados -->
+    <div id="result-container" class="result-container">
+      <h2>Resultados</h2>
+      <div id="qrcode"></div>
+      <p>Datos del registro:</p>
+      <pre class="json-display" id="json-data"></pre>
+      <button id="download-qr">Descargar QR + Foto</button>
+    </div>
+  </div>
+
+  <!-- Lógica JS -->
+  <script src="script.js"></script>
+</body>
+</html>

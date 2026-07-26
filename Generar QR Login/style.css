@@ -1,0 +1,95 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-image: url('https://i0.wp.com/www.uachatec.com.mx/wp-content/uploads/2022/07/85104507_1458268631021321_4317805041567137792_n.jpg?resize=960%2C720&ssl=1');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(75, 0, 130, 0.15);
+  border-top: 4px solid #4B0082;
+}
+h1 {
+  color: #4B0082;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #7B1FA2;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 16px;
+  border-left: 3px solid #7B1FA2;
+}
+button {
+  background-color: #4B0082;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #7B1FA2;
+}
+.result-container {
+  margin-top: 30px;
+  display: none;
+  text-align: center;
+}
+#qrcode {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px auto;
+}
+.result-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+.result-item img {
+  max-width: 200px;
+  margin-top: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+}
+.json-display {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: left;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+.required {
+  color: red;
+}
+.alert {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  display: none;
+}

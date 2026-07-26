@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('https://i0.wp.com/www.uachatec.com.mx/wp-content/uploads/2022/07/85104507_1458268631021321_4317805041567137792_n.jpg?resize=960%2C720&ssl=1');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-top: 40px;
+  text-align: center;
+}
+
+h1 {
+  color: #4B0082;
+  margin-bottom: 20px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+button.purple {
+  background-color: #4B0082;
+}
+button.success {
+  background-color: #27ae60;
+}
+button.danger {
+  background-color: #e74c3c;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.dashboard h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.charts {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.chart-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 400px;
+}
